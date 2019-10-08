@@ -1,0 +1,13 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "perf-server",
+      "image": "<accountid>.dkr.ecr.<region>.amazonaws.com/
+      "memory": 200,
+      "cpu": 10,
+      "essential": true
+    }
+  ],
+  "family": "perf-server-family",
+  "taskRoleArn": "arn:aws:iam::<accountid>:role/AmazonECSTaskPerfServerRole"
+}
