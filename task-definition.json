@@ -1,13 +1,65 @@
 {
+
+  "executionRoleArn": "arn:aws:iam::<id>:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
-      "name": "perf-server",
-      "image": "<accountid>.dkr.ecr.<region>.amazonaws.com/
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "cpu": 0,
       "memory": 200,
-      "cpu": 10,
-      "essential": true
+      "image": "<id>.dkr.ecr.us-west-2.amazonaws.com/perf-server-repository:latest",
+      "name": "perf-server"
     }
   ],
-  "family": "perf-server-family",
-  "taskRoleArn": "arn:aws:iam::<accountid>:role/AmazonECSTaskPerfServerRole"
+  "memory": "200",
+  "taskRoleArn": "arn:aws:iam::<id>:role/ecsTaskExecutionRole",
+  "compatibilities": [
+    "EC2"
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:<id>:task-definition/perfserver:1",
+  "family": "perfserver",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role-network-host"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    }
+  ],
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "networkMode": "host",
+  "cpu": "1024",
+  "revision": 1,
+  "status": "ACTIVE"
 }
